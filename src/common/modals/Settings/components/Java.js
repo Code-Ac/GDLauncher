@@ -152,8 +152,8 @@ export default function MyAccountPreferences() {
           `}
         >
           Disable this to specify a custom java path to use instead of using
-          openJDK shipped with GDLauncher if that is the case select the path
-          to your Java executable. 
+          openJDK shipped with GDLauncher if that is the case select the path to
+          to your Java executable.
         </Paragraph>
         <Switch
           color="primary"
