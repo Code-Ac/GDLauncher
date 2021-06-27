@@ -5,7 +5,9 @@ export const FABRIC_APIS = 'https://meta.fabricmc.net/v2';
 export const GDL_LEGACYJAVAFIXER_MOD_URL =
   'https://gdevs.io/legacyjavafixer-1.0.jar';
 export const MOJANG_APIS = 'https://authserver.mojang.com';
-export const JAVA_MANIFEST_URL = 'https://cdn.assets-gdevs.com/openjdk8.json';
+export const JAVA_8_MANIFEST_URL = 'https://cdn.assets-gdevs.com/openjdk8.json';
+export const JAVA_16_MANIFEST_URL =
+  'https://cdn.assets-gdevs.com/openjdk16.json';
 export const MAVEN_REPO = 'http://central.maven.org/maven2';
 export const MC_LIBRARIES_URL = 'https://libraries.minecraft.net';
 export const FORGESVC_URL = 'https://addons-ecs.forgesvc.net/api/v2';

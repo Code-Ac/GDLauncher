@@ -6,15 +6,15 @@ import {
   FORGESVC_URL,
   MC_MANIFEST_URL,
   FABRIC_APIS,
-  JAVA_MANIFEST_URL,
+  JAVA_8_MANIFEST_URL,
   IMGUR_CLIENT_ID,
   FORGESVC_CATEGORIES,
   MICROSOFT_LIVE_LOGIN_URL,
   MICROSOFT_XBOX_LOGIN_URL,
   MICROSOFT_XSTS_AUTH_URL,
   MINECRAFT_SERVICES_URL,
-  FTB_API_URL
-} from './utils/constants';
+  FTB_API_URL, JAVA_16_MANIFEST_URL
+} from "./utils/constants";
 import { sortByDate } from './utils';
 
 // Microsoft Auth
@@ -196,8 +196,13 @@ export const getFabricManifest = () => {
   return axios.get(url);
 };
 
-export const getJavaManifest = () => {
-  const url = JAVA_MANIFEST_URL;
+export const getJavaManifest = javaVersion => {
+  let url;
+  if (!javaVersion || javaVersion === 8) {
+    url = JAVA_8_MANIFEST_URL;
+  } else {
+    url = JAVA_16_MANIFEST_URL;
+  }
   return axios.get(url);
 };
 

@@ -137,10 +137,10 @@ export function initManifests() {
       });
       return fabric;
     };
-    const getJavaManifestVersions = async () => {
-      const java = (await getJavaManifest()).data;
+    const getJavaManifestVersions = async javaVersion => {
+      const java = (await getJavaManifest(javaVersion ? javaVersion : 8)).data;
       dispatch({
-        type: ActionTypes.UPDATE_JAVA_MANIFEST,
+        type: ActionTypes.UPDATE_JAVA_8_MANIFEST,
         data: java
       });
       return java;
@@ -175,21 +175,23 @@ export function initManifests() {
       return omitBy(forgeVersions, v => v.length === 0);
     };
     // Using reflect to avoid rejection
-    const [fabric, java, categories, forge] = await Promise.all([
+    const [fabric, java8, java16, categories, forge] = await Promise.all([
       reflect(getFabricVersions()),
-      reflect(getJavaManifestVersions()),
+      reflect(getJavaManifestVersions(8)),
+      reflect(getJavaManifestVersions(16)),
       reflect(getAddonCategoriesVersions()),
       reflect(getForgeVersions())
     ]);
 
-    if (fabric.e || java.e || categories.e || forge.e) {
-      console.error(fabric, java, categories, forge);
+    if (fabric.e || java8.e || categories.e || forge.e) {
+      console.error(fabric, java8, categories, forge);
     }
 
     return {
       mc: mc || app.vanillaManifest,
       fabric: fabric.status ? fabric.v : app.fabricManifest,
-      java: java.status ? java.v : app.javaManifest,
+      java8: java8.status ? java8.v : app.java8Manifest,
+      java16: java16.status ? java16.v : app.java16Manifest,
       categories: categories.status ? categories.v : app.curseforgeCategories,
       forge: forge.status ? forge.v : app.forgeManifest
     };
